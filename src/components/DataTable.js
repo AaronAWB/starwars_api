@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Table = () => {
+const DataTable = () => {
     return(
-        <div>
+        <div className='container'>
             <table>
-                <thead>
+                <thead className='text-center'>
                     <tr>
                         <th>Name</th>
                         <th>Birth Date</th>
@@ -14,9 +14,14 @@ const Table = () => {
                         <th>Species</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr>
+
+                    </tr>
+                </tbody>
             </table>
         </div>
     )
 }
 
-export default Table;
+export default DataTable;
