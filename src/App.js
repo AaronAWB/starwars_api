@@ -6,9 +6,10 @@ import DataTable from './components/DataTable';
 import Pagination from './components/Pagination';
 
 
-function App() {
+const App = () => {
   return (
     <div className='container'>
+      <h1 className='text-center'>Star Wars API Search</h1>
       <SearchBar />
       <DataTable />
       <Pagination />

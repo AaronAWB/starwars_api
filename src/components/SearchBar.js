@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Search = () => {
+const SearchBar = () => {
     return(
-        <div>
+        <div className='container search-bar-container'>
             <div>
                 <input
                     type='text'
@@ -16,4 +16,4 @@ const Search = () => {
     )
 }
 
-export default Search;
+export default SearchBar;
