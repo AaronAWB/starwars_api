@@ -3,7 +3,7 @@ import React from 'react';
 const DataTable = () => {
     return(
         <div className='container'>
-            <table>
+            <table className='table table-striped table-dark'>
                 <thead className='text-center'>
                     <tr>
                         <th>Name</th>
