@@ -1,7 +1,7 @@
 import React from 'react'
 import Axios from 'axios'
 
-import Search from './components/Search';
+import SearchBar from './components/SearchBar';
 import DataTable from './components/DataTable';
 import Pagination from './components/Pagination';
 
@@ -9,7 +9,7 @@ import Pagination from './components/Pagination';
 function App() {
   return (
     <div className='container'>
-      <Search />
+      <SearchBar />
       <DataTable />
       <Pagination />
     </div>
