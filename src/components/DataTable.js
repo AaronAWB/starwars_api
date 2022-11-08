@@ -10,7 +10,7 @@ const DataTable = () => {
                         <th>Birth Date</th>
                         <th>Height</th>
                         <th>Mass</th>
-                        <th>Homeword</th>
+                        <th>Homeworld</th>
                         <th>Species</th>
                     </tr>
                 </thead>
