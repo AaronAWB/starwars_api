@@ -2,29 +2,30 @@ import React from 'react'
 import Axios from 'axios'
 import { useEffect, useState } from 'react'
 
-import SearchBar from './components/SearchBar';
+import SearchBox from './components/SearchBox';
 import DataTable from './components/DataTable';
 import Pagination from './components/Pagination';
-import axios from 'axios';
+
 
 
 const App = () => {
 
-  componentDidMount() {
-    axios.get('https://dog.ceo/api/breeds/image/random')
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-  }
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState([]);
+
+  useEffect (() => {
+    const url = "";
+    fetch(url)
+      .then ((response) => response.json())
+      .then ((json) => setData(json['results']))
+      .catch ((error) => console.log(error))
+  }, []);
 
 
   return (
     <div className='container'>
       <h1 className='text-center'>Star Wars API Search</h1>
-      <SearchBar />
+      <SearchBox />
       <DataTable />
       <Pagination />
     </div>
