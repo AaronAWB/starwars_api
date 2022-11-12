@@ -11,13 +11,13 @@ import axios from 'axios';
 const App = () => {
 
   componentDidMount() {
-    axios.get(httpAddress)
-    .then(response =>{
-      console.log(response.data;)
+    axios.get('https://dog.ceo/api/breeds/image/random')
+    .then(response => {
+      console.log(response.data);
     })
     .catch(error => {
       console.log(error);
-    })
+    });
   }
 
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const SearchBar = () => {
     return(
-        <div className='container search-bar-container'>
+        <div className='container search-box-container'>
             <div>
                 <input
                     type='text'
@@ -16,4 +16,4 @@ const SearchBar = () => {
     )
 }
 
-export default SearchBar;
+export default SearchBox;
