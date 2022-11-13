@@ -5,28 +5,32 @@ import { useEffect, useState } from 'react'
 import SearchBox from './components/SearchBox';
 import DataTable from './components/DataTable';
 import Pagination from './components/Pagination';
+import axios from 'axios';
 
 
 
 const App = () => {
 
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [characters, setCharacters] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  useEffect (() => {
-    const url = "https://swapi.dev/api/people/?page=";
-    fetch(url)
-      .then ((response) => response.json())
-      .then ((json) => setData(json['results']))
-      .catch ((error) => console.log(error))
-  }, []);
-
-  useEffect(() => {
-    if (data.length !== 0) {
-      setIsLoading(false);
-    }
-    console.log(data);
-  }, [data]);
+  const getCharacterData = () => {
+    axios.get('https://swapi.dev/api/people')
+    .then(res => {
+      console.log(res)
+      setCharacters([...characters, res.name])
+    }).catch(err => {
+      console.log(err)
+    })
+   
+  };
+    
+  // useEffect(() => {
+  //   if (characterData.length !== 0) {
+  //     setIsLoading(false);
+  //   }
+  //   console.log(data);
+  // }, [data]);
 
 
   return (

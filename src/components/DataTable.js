@@ -1,4 +1,5 @@
 import React from 'react';
+import Nanoid from 'nanoid'
 
 const DataTable = () => {
     return(
@@ -15,8 +16,16 @@ const DataTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-
+                    <tr key={nanoid()}>
+                        {characters.map(characters) => {
+                            return (
+                            <td>{characters.name}</td>
+                            <td>{characters.birth_year}</td>
+                            <td>{characters.height} cm</td>
+                            <td>{characters.mass} kg</td>
+                            <td>{characters.planet}</td>
+                            <td>{characters.species}</td>
+                        )}};
                     </tr>
                 </tbody>
             </table>
