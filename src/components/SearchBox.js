@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SearchBar = () => {
+const SearchBox = () => {
     return(
         <div className='container search-box-container'>
             <div>

@@ -14,16 +14,17 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
 
-  const getCharacterData = () => {
+  useEffect (() => {
     axios.get('https://swapi.dev/api/people')
-    .then(res => {
-      console.log(res)
-      setCharacters([...characters, res.name])
-    }).catch(err => {
-      console.log(err)
-    })
-   
-  };
+      .then(res => {
+        console.log(res.data.results)
+        setCharacters([res.data.results])
+      }).catch(err => {
+        console.log(err)
+      })
+  }, []);
+
+
     
   // useEffect(() => {
   //   if (characterData.length !== 0) {

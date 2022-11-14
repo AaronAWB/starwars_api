@@ -16,7 +16,7 @@ const DataTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr key={nanoid()}>
+                    {/* <tr key={nanoid()}>
                         {characters.map(characters) => {
                             return (
                             <td>{characters.name}</td>
@@ -25,8 +25,8 @@ const DataTable = () => {
                             <td>{characters.mass} kg</td>
                             <td>{characters.planet}</td>
                             <td>{characters.species}</td>
-                        )}};
-                    </tr>
+                        )}}; */}
+                    {/* </tr> */}
                 </tbody>
             </table>
         </div>
