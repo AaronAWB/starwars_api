@@ -1,8 +1,20 @@
 import React from 'react';
 
-const DataTable = ({ id, name, birth_year, height, mass, planet, species }) => {
+const DataTable = ({ characters }) => {
 
-    return(
+    const tableRow = characters.map(({name, birth_year, height, mass, planet, species}, i) => (
+            <tr key={i}>
+                <td>{name}</td>
+                <td>{birth_year}</td>
+                <td>{height}cm</td>
+                <td>{mass}kg</td>
+                <td>{planet}</td>
+                <td>{species}</td>
+            </tr>
+        )
+    );
+    
+    return (
         <div className='container'>
             <table className='table table-striped table-dark'>
                 <thead className='text-center'>
@@ -16,14 +28,7 @@ const DataTable = ({ id, name, birth_year, height, mass, planet, species }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr key={id}>
-                        <td>{name}</td>
-                        <td>{birth_year}</td>
-                        <td>{height} cm</td>
-                        <td>{mass} kg</td>
-                        <td>{planet}</td>
-                        <td>{species}</td>
-                    </tr>
+                    { tableRow }
                 </tbody>
             </table>
         </div>
