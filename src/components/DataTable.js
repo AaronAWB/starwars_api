@@ -2,18 +2,19 @@ import React from 'react';
 
 const DataTable = ({ characters }) => {
 
-    const tableRow = characters.map(({name, birth_year, height, mass, planet, species}, i) => (
+    const characterData = characters.map((character, i) => {
+        return (
             <tr key={i}>
-                <td>{name}</td>
-                <td>{birth_year}</td>
-                <td>{height}cm</td>
-                <td>{mass}kg</td>
-                <td>{planet}</td>
-                <td>{species}</td>
+                <td>{characterData.name}</td>
+                <td>{characterData.birth_year}</td>
+                <td>{characterData.height}</td>
+                <td>{characterData.mass}</td>
+                <td>{characterData.planet}</td>
+                <td>{characterData.species}</td>
             </tr>
         )
-    );
-    
+    })
+ 
     return (
         <div className='container'>
             <table className='table table-striped table-dark'>
@@ -28,7 +29,7 @@ const DataTable = ({ characters }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    { tableRow }
+                    {characterData}
                 </tbody>
             </table>
         </div>

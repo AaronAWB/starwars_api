@@ -8,12 +8,13 @@ import Pagination from './components/Pagination';
 
 const App = () => {
 
-  const [characters, setCharacters] = useState([])
+  const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect (() => {
     Axios.get('https://swapi.dev/api/people')
       .then(res => {
+        console.log(res)
         setCharacters([...characters, res.data.results])
       }).catch(err => {
         console.log(err)
