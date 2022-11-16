@@ -14,9 +14,9 @@ const App = () => {
   useEffect (() => {
     Axios
       .get('https://www.swapi.tech/api/people')
-      .then(results => {
-        console.log(results)
-        setCharacters([results.data.results])
+      .then(response => {
+        console.log(response)
+        setCharacters([response.data.results])
       }).catch(error => {
         console.log(error)
       })
