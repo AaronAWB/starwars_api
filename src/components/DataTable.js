@@ -5,12 +5,12 @@ const DataTable = ({ characters }) => {
     const characterData = characters.map((character, i) => {
         return (
             <tr key={i}>
-                <td>{characterData.name}</td>
-                <td>{characterData.birth_year}</td>
-                <td>{characterData.height}</td>
-                <td>{characterData.mass}</td>
-                <td>{characterData.planet}</td>
-                <td>{characterData.species}</td>
+                <td>{character.name}</td>
+                <td>{character.birth_year}</td>
+                <td>{character.height}</td>
+                <td>{character.mass}</td>
+                <td>{character.planet}</td>
+                <td>{character.species}</td>
             </tr>
         )
     })

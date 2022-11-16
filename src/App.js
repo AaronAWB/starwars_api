@@ -12,10 +12,10 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect (() => {
-    Axios.get('https://swapi.dev/api/people')
+    Axios.get('https://www.swapi.tech/api/people')
       .then(res => {
         console.log(res)
-        setCharacters([...characters, res.data.results])
+        setCharacters([res.data.results])
       }).catch(err => {
         console.log(err)
       })
