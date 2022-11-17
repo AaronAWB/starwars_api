@@ -1,7 +1,7 @@
 import React from 'react';
 
-const DataTable = ({ characters }) => {
-
+const CharacterTable = ({ characters }) => {
+ 
     return (
         <div className='container'>
             <table className='table table-striped table-dark'>
@@ -15,7 +15,7 @@ const DataTable = ({ characters }) => {
                         <th>Species</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className='text-center'>
                 {characters.map((character, i) => {
                     return (
                         <tr key={i}>
@@ -34,4 +34,4 @@ const DataTable = ({ characters }) => {
     )
 }
 
-export default DataTable;
+export default CharacterTable;

@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { useEffect, useState } from 'react'
 
 import SearchBox from './components/SearchBox';
-import DataTable from './components/DataTable';
+import CharacterTable from './components/CharacterTable';
 import Pagination from './components/Pagination';
 
 const App = () => {
@@ -12,14 +12,16 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect (() => {
+    for (let i = 1; i < 10; i++) {
     Axios
-      .get('https://www.swapi.tech/api/people')
+      .get(`https://www.swapi.tech/api/people/${i}`)
       .then(response => {
         console.log(response)
-        setCharacters([response.data.results])
+        setCharacters([...characters, response.data.result.properties])
       }).catch(error => {
         console.log(error)
       })
+    }
   }, []);
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const App = () => {
     <div className='container'>
       <h1 className='text-center'>Star Wars API Search</h1>
       <SearchBox />
-      <DataTable characters={ characters }/>
+      <CharacterTable characters={ characters }/>
       <Pagination />
     </div>
   );
