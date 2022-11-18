@@ -12,16 +12,15 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect (() => {
-    for (let i = 1; i < 10; i++) {
     Axios
-      .get(`https://www.swapi.tech/api/people/${i}`)
+      .get('https://swapi.dev/api/people')
       .then(response => {
         console.log(response)
-        setCharacters([...characters, response.data.result.properties])
-      }).catch(error => {
+        setCharacters([...characters, response.data.results])
+      })
+      .catch(error => {
         console.log(error)
       })
-    }
   }, []);
 
   useEffect(() => {
