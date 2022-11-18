@@ -16,7 +16,8 @@ const App = () => {
       .get('https://swapi.dev/api/people')
       .then(response => {
         console.log(response)
-        setCharacters([response.data.results])
+        const characterResults = response.data.results
+        setCharacters(characterResults)
       })
       .catch(error => {
         console.log(error)

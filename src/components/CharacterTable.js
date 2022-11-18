@@ -26,7 +26,7 @@ const CharacterTable = ({ characters }) => {
                                 <td>{character.planet}</td>
                                 <td>{character.species}</td>
                             </tr>
-                            );
+                            )
                      })}
                 </tbody>
             </table>
