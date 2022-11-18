@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CharacterTable = ({ characters }) => {
+const CharacterTable = ({ characters, getSpecies, getPlanet }) => {
  
     return (
         <div className='container'>

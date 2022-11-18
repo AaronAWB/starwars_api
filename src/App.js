@@ -24,6 +24,32 @@ const App = () => {
       })
   }, []);
 
+  const getSpecies = (n) => {
+    Axios
+      .get(`https://swapi.dev/api/species/${[n]}`)
+      .then(response => {
+        console.log(response)
+        const species = response.data.results.name
+        setSpecies(species)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  const getHomeworld = (n) => {
+    Axios
+      .get(`https://swapi.dev/api/homeworld/${[n]}`)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      const homeworld = response.data.results.name
+    return homeworld
+  }
+
   useEffect(() => {
     if (characters.length !== 0) {
       setIsLoading(false);
@@ -35,7 +61,7 @@ const App = () => {
     <div className='container'>
       <h1 className='text-center'>Star Wars API Search</h1>
       <SearchBox />
-      <CharacterTable characters={ characters }/>
+      <CharacterTable characters={ characters, getSpecies, getPlanet }/>
       <Pagination />
     </div>
   );
