@@ -16,18 +16,18 @@ const CharacterTable = ({ characters }) => {
                     </tr>
                 </thead>
                 <tbody className='text-center'>
-                {characters.map((character, i) => {
-                    return (
-                        <tr key={i}>
-                            <td>{character.name}</td>
-                            <td>{character.birth_year}</td>
-                            <td>{character.height}</td>
-                            <td>{character.mass}</td>
-                            <td>{character.planet}</td>
-                            <td>{character.species}</td>
-                        </tr>
-                    )
-                 })}
+                    {characters.map((character, i) => {
+                        return(
+                            <tr key={i}>
+                                <td>{character.name}</td>
+                                <td>{character.birth_year}</td>
+                                <td>{character.height}</td>
+                                <td>{character.mass}</td>
+                                <td>{character.planet}</td>
+                                <td>{character.species}</td>
+                            </tr>
+                            );
+                     })}
                 </tbody>
             </table>
         </div>
