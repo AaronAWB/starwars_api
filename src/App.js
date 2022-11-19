@@ -16,7 +16,7 @@ const App = () => {
       .get(speciesURL)
       .then(response => {
         const speciesResult = response.data.name;
-        !speciesResult ? (speciesResult = 'Human') : (speciesResult = response.data.name)
+        if (!speciesResult) {speciesResult='Human'}
       })
       .catch(error => {
         console.log(error)
@@ -32,10 +32,12 @@ const App = () => {
         const characterResults = response.data.results
         
         for (character of characterResults) {
-          const homeworldURL = characterResults.homeworld;
+          // const homeworldURL = characterResults.homeworld;
           const speciesURL = characterResults.species
           
-          s
+          if (character.species) {
+            getSpecies(speciesURL);
+          }
 
         }
 
