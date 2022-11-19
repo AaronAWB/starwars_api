@@ -15,13 +15,14 @@ const App = () => {
     Axios
       .get(speciesURL)
       .then(response => {
-        const speciesResult = response.data.name;
+        let speciesResult = response.results.name;
         if (!speciesResult) {speciesResult='Human'}
+        console.log(speciesResult)
+        return speciesResult
       })
       .catch(error => {
         console.log(error)
       })
-    return speciesResult
   }
 
   useEffect (() => {
@@ -31,12 +32,11 @@ const App = () => {
         console.log(response)
         const characterResults = response.data.results
         
-        for (character of characterResults) {
-          // const homeworldURL = characterResults.homeworld;
-          const speciesURL = characterResults.species
+        for (const character in characterResults) {
           
           if (character.species) {
-            getSpecies(speciesURL);
+            character.species = getSpecies(character.species)
+            console.log(character.species)
           }
 
         }
