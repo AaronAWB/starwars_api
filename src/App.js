@@ -10,56 +10,40 @@ const App = () => {
 
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [species, setSpecies] = useState('');
 
-  const getHomeworldName = (homeworldURL) => {
-    Axios
-      .get(homeworldURL)
-      .then(response => {
-        const homeworldName = response.data.name;
-        console.log(homeworldName)
-        return homeworldName
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
+  const getHomeworldName = async (homeworldURL) => {
+    const homeworld = await Axios.get(homeworldURL)
+    return homeworld.data.name
+    }
+
+  const getSpeciesName = async (speciesURL) => {
+    const species = await Axios.get(speciesURL)
+    return species.data.name
+    }
   
-  const getSpeciesName = (speciesURL) => {
-    Axios
-      .get(speciesURL)
-      .then(response => {
-        const speciesName = response.data.name;
-        console.log(speciesName)
-        return speciesName
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
-
   useEffect (() => {
-    Axios
-      .get('https://swapi.dev/api/people')
-      .then(response => {
-        console.log(response)
-        const initialCharacterResults = response.data.results
-        const completeCharacterResults = initialCharacterResults.map((character) => {
-            
-            character.species.length === 0
-            ? character.species = 'Human' 
-            : character.species = getSpeciesName(character.species)
+    const getCharacterData = async () => {
+      try {
+        const response = await Axios.get('https://swapi.dev/api/people')
+        const characterResults = response.data.results
+        
+        for (let character of characterResults) {
+          
+          character.species.length === 0
+          ? character.species = 'Human' 
+          : character.species = await getSpeciesName(character.species)
 
-            character.homeworld = getHomeworldName(character.homeworld)
-           
-            return character
-            })
-        console.log(completeCharacterResults)
-        setCharacters(completeCharacterResults)
-        })
-      .catch(error => {
+          character.homeworld = await getHomeworldName(character.homeworld)
+        }
+        setCharacters(characterResults)
+      } 
+      catch (error) {
         console.log(error)
-      })
-  }, []);
+      }
+    }
+    getCharacterData()
+  }, [])
 
   useEffect(() => {
     if (characters.length !== 0) {

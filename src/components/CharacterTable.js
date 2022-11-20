@@ -23,7 +23,7 @@ const CharacterTable = ({ characters, getSpecies, getPlanet }) => {
                                 <td>{character.birth_year}</td>
                                 <td>{character.height}cm</td>
                                 <td>{character.mass}kg</td>
-                                <td>{character.planet}</td>
+                                <td>{character.homeworld}</td>
                                 <td>{character.species}</td>
                             </tr>
                             )
