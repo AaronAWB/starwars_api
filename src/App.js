@@ -10,16 +10,7 @@ const App = () => {
 
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
-  const getHomeworldName = async (homeworldURL) => {
-    const homeworld = await Axios.get(homeworldURL)
-    return homeworld.data.name
-    }
-
-  const getSpeciesName = async (speciesURL) => {
-    const species = await Axios.get(speciesURL)
-    return species.data.name
-    }
+  const [pageNumber, setPageNumber] =useState(1)
   
   useEffect (() => {
     const getCharacterData = async () => {
@@ -50,10 +41,19 @@ const App = () => {
     }
   }, [characters]);
 
+  const getHomeworldName = async (homeworldURL) => {
+    const homeworld = await Axios.get(homeworldURL)
+    return homeworld.data.name
+    }
 
+  const getSpeciesName = async (speciesURL) => {
+    const species = await Axios.get(speciesURL)
+    return species.data.name
+    }
+  
   return (
     <div className='container'>
-      <h1 className='text-center'>Star Wars API Search</h1>
+      <h1 className='text-center mt-4'>Star Wars API Search</h1>
       <SearchBox />
       <CharacterTable characters={ characters }/>
       <Pagination />

@@ -5,3 +5,7 @@ body {
 .search-box-container {
     display: flex;
 }
+
+th {
+    color: rgb(213, 213, 30);
+}
