@@ -2,7 +2,7 @@ import React from 'react'
 import Axios from 'axios'
 import { useEffect, useState } from 'react'
 
-import SearchBox from './components/SearchBox';
+import SearchBar from './components/SearchBar';
 import CharacterTable from './components/CharacterTable';
 import Pagination from './components/Pagination';
 
@@ -74,23 +74,28 @@ const App = () => {
 
   const handleSearchBarInput = (event) => {
     event.preventDefault();
-    setSearchParameter(event.target);
+    setSearchParameter(event.target.value);
+    console.log(searchParameter)
 }
 
-  const handleSearch = (search) => {
-    getCharacterData(`https://swapi.dev/api/people/?search=${search}`)
-    setSearchParameter('')
+  const handleSearch = (event) => {
+    event.preventDefault();
+    console.log('Clicked')
+    getCharacterData(`https://swapi.dev/api/people/?search=${searchParameter}`);
   }
   
   return (
     <div className='container'>
       <h1 className='text-center mt-4'>Star Wars API Search</h1>
-      <SearchBox handleSearchBarInput={ handleSearchBarInput } />
+      <SearchBar
+       handleSearchBarInput={ handleSearchBarInput } 
+       handleSearch={ handleSearch }
+       />
       <CharacterTable 
         characters={ characters }
         loading={ isLoading }
         />
-      <Pagination handlePageChange={ handlePageChange } />
+      <Pagination handlePageChange={ handlePageChange }/>
     </div>
   );
 }
