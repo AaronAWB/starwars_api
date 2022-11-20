@@ -2,7 +2,7 @@ import React from 'react';
 
 const Pagination = () => {
     return (
-        <nav aria-label="Page navigation example">
+        <nav aria-label='Page navigation container mt-4 align-items-center justify-content-center'>
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
