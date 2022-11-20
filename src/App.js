@@ -8,15 +8,17 @@ import Pagination from './components/Pagination';
 
 const App = () => {
 
+  const [baseURL, setBaseURL] = useState('https://swapi.dev/api/people')
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [pageNumber, setPageNumber] =useState(1)
   
   useEffect (() => {
-    const getCharacterData = async () => {
+    const getCharacterData = async (url) => {
       try {
-        const response = await Axios.get('https://swapi.dev/api/people')
+        const response = await Axios.get(url)
         const characterResults = response.data.results
+        console.log(response)
         
         for (let character of characterResults) {
           
@@ -32,7 +34,7 @@ const App = () => {
         console.log(error)
       }
     }
-    getCharacterData()
+    getCharacterData(baseURL)
   }, [])
 
   useEffect(() => {
@@ -55,7 +57,10 @@ const App = () => {
     <div className='container'>
       <h1 className='text-center mt-4'>Star Wars API Search</h1>
       <SearchBox />
-      <CharacterTable characters={ characters }/>
+      <CharacterTable 
+        characters={ characters }
+        loading={ isLoading }
+        />
       <Pagination />
     </div>
   );

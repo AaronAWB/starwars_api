@@ -1,6 +1,10 @@
 import React from 'react';
 
-const CharacterTable = ({ characters, getSpecies, getPlanet }) => {
+const CharacterTable = ({ characters, loading }) => {
+
+    if(loading) {
+        return <h2>Loading...</h2>
+    }
  
     return (
         <div className='container'>
