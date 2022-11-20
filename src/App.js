@@ -11,12 +11,12 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getSpecies = (speciesURL) => {
+  const getSpeciesName = (speciesURL) => {
     Axios
       .get(speciesURL)
       .then(response => {
-        let speciesResult = response.results.name;
-        if (!speciesResult) {speciesResult='Human'}
+        console.log(response)
+        const speciesResult = response.data.name;
         console.log(speciesResult)
         return speciesResult
       })
@@ -30,19 +30,16 @@ const App = () => {
       .get('https://swapi.dev/api/people')
       .then(response => {
         console.log(response)
-        const characterResults = response.data.results
-        
-        for (const character in characterResults) {
-          
-          if (character.species) {
-            character.species = getSpecies(character.species)
-            console.log(character.species)
-          }
-
-        }
-
-        setCharacters(characterResults)
-      })
+        const initialCharacterResults = response.data.results
+        const completeCharacterResults = initialCharacterResults.map((character) => {
+            character.species.length === 0
+            ? character.species = 'Human'
+            : character.species = getSpeciesName(character.species)
+            return character
+            })
+        console.log(completeCharacterResults)
+        setCharacters(completeCharacterResults)
+        })
       .catch(error => {
         console.log(error)
       })
