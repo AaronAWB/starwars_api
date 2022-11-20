@@ -16,30 +16,32 @@ const App = () => {
 
   const baseURL = 'https://swapi.dev/api/people';
   
-  useEffect (() => {
-    const getCharacterData = async (url) => {
-      try {
-        const response = await Axios.get(url)
-        const characterResults = response.data.results
-        const nextPage = response.data.next;
-        const previousPage = response.data.previous;
+  const getCharacterData = async (url) => {
+    try {
+      const response = await Axios.get(url)
+      console.log(url)
+      const characterResults = response.data.results
+      const nextPage = response.data.next;
+      const previousPage = response.data.previous;
+      
+      for (let character of characterResults) {
         
-        for (let character of characterResults) {
-          
-          character.species.length === 0
-          ? character.species = 'Human' 
-          : character.species = await getSpeciesName(character.species)
+        character.species.length === 0
+        ? character.species = 'Human' 
+        : character.species = await getSpeciesName(character.species)
 
-          character.homeworld = await getHomeworldName(character.homeworld)
-        }
-        setCharacters(characterResults)
-        setNextPageURL(nextPage)
-        setPreviousPageURL(previousPage)
-      } 
-      catch (error) {
-        console.log(error)
+        character.homeworld = await getHomeworldName(character.homeworld)
       }
+      setCharacters(characterResults)
+      setNextPageURL(nextPage)
+      setPreviousPageURL(previousPage)
+    } 
+    catch (error) {
+      console.log(error)
     }
+  }
+  
+  useEffect (() => {
     getCharacterData(baseURL)
   }, [])
 
@@ -60,15 +62,12 @@ const App = () => {
     }
   
   const handlePageChange = (page) => {
-    if (page = 'previous') {
-      setPageNumber(pageNumber - 1)
-      getCharacterData(previousPageURL)
-    } else if (page = 'next') {
-      setPageNumber(pageNumber + 1)
-      getCharacterData(nextPageURL)
+    if (page === 'previous') {
+        getCharacterData(previousPageURL)
+    } else if (page === 'next') {
+        getCharacterData(nextPageURL)
     } else {
-      setPageNumber(page)
-      getCharacterData(`https://swapi.dev/api/people/${pageNumber}/`)
+        getCharacterData(`https://swapi.dev/api/people/?page=${page}`)
     }
   }
   
@@ -80,7 +79,7 @@ const App = () => {
         characters={ characters }
         loading={ isLoading }
         />
-      <Pagination pageNumber={ pageNumber } />
+      <Pagination handlePageChange={ handlePageChange } />
     </div>
   );
 }

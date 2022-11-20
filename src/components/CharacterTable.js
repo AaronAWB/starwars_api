@@ -25,8 +25,8 @@ const CharacterTable = ({ characters, loading }) => {
                             <tr key={i}>
                                 <td>{character.name}</td>
                                 <td>{character.birth_year}</td>
-                                <td>{character.height}cm</td>
-                                <td>{character.mass}kg</td>
+                                <td>{character.height} cm</td>
+                                <td>{character.mass} kg</td>
                                 <td>{character.homeworld}</td>
                                 <td>{character.species}</td>
                             </tr>
