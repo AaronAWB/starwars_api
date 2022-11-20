@@ -13,6 +13,7 @@ const App = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [nextPageURL, setNextPageURL] = useState('');
   const [previousPageURL, setPreviousPageURL] = useState('');
+  const [searchParameter, setSearchParameter] = useState('')
 
   const baseURL = 'https://swapi.dev/api/people';
   
@@ -70,11 +71,21 @@ const App = () => {
         getCharacterData(`https://swapi.dev/api/people/?page=${page}`)
     }
   }
+
+  const handleSearchBarInput = (event) => {
+    event.preventDefault();
+    setSearchParameter(event.target);
+}
+
+  const handleSearch = (search) => {
+    getCharacterData(`https://swapi.dev/api/people/?search=${search}`)
+    setSearchParameter('')
+  }
   
   return (
     <div className='container'>
       <h1 className='text-center mt-4'>Star Wars API Search</h1>
-      <SearchBox />
+      <SearchBox handleSearchBarInput={ handleSearchBarInput } />
       <CharacterTable 
         characters={ characters }
         loading={ isLoading }
