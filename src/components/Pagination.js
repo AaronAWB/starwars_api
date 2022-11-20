@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Pagination = () => {
+const Pagination = ({pageNumber}) => {
     return (
         <nav aria-label='Page navigation container mt-4 align-items-center justify-content-center'>
             <ul class="pagination">

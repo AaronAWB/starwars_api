@@ -8,17 +8,21 @@ import Pagination from './components/Pagination';
 
 const App = () => {
 
-  const [baseURL, setBaseURL] = useState('https://swapi.dev/api/people')
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [pageNumber, setPageNumber] =useState(1)
+  const [pageNumber, setPageNumber] = useState(1);
+  const [nextPageURL, setNextPageURL] = useState('');
+  const [previousPageURL, setPreviousPageURL] = useState('');
+
+  const baseURL = 'https://swapi.dev/api/people';
   
   useEffect (() => {
     const getCharacterData = async (url) => {
       try {
         const response = await Axios.get(url)
         const characterResults = response.data.results
-        console.log(response)
+        const nextPage = response.data.next;
+        const previousPage = response.data.previous;
         
         for (let character of characterResults) {
           
@@ -29,6 +33,8 @@ const App = () => {
           character.homeworld = await getHomeworldName(character.homeworld)
         }
         setCharacters(characterResults)
+        setNextPageURL(nextPage)
+        setPreviousPageURL(previousPage)
       } 
       catch (error) {
         console.log(error)
@@ -53,6 +59,10 @@ const App = () => {
     return species.data.name
     }
   
+  // const handlePageChange = (e) => {
+  //   e.target
+  // }
+  
   return (
     <div className='container'>
       <h1 className='text-center mt-4'>Star Wars API Search</h1>
@@ -61,7 +71,7 @@ const App = () => {
         characters={ characters }
         loading={ isLoading }
         />
-      <Pagination />
+      <Pagination pageNumber={ pageNumber } />
     </div>
   );
 }
