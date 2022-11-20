@@ -11,14 +11,26 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const getHomeworldName = (homeworldURL) => {
+    Axios
+      .get(homeworldURL)
+      .then(response => {
+        const homeworldName = response.data.name;
+        console.log(homeworldName)
+        return homeworldName
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+  
   const getSpeciesName = (speciesURL) => {
     Axios
       .get(speciesURL)
       .then(response => {
-        console.log(response)
-        const speciesResult = response.data.name;
-        console.log(speciesResult)
-        return speciesResult
+        const speciesName = response.data.name;
+        console.log(speciesName)
+        return speciesName
       })
       .catch(error => {
         console.log(error)
@@ -32,9 +44,13 @@ const App = () => {
         console.log(response)
         const initialCharacterResults = response.data.results
         const completeCharacterResults = initialCharacterResults.map((character) => {
+            
             character.species.length === 0
-            ? character.species = 'Human'
+            ? character.species = 'Human' 
             : character.species = getSpeciesName(character.species)
+
+            character.homeworld = getHomeworldName(character.homeworld)
+           
             return character
             })
         console.log(completeCharacterResults)
