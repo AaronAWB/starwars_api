@@ -36,9 +36,9 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    if (characters.length !== 0) {
-      setIsLoading(false);
-    }
+    characters.length !== 0
+    ? setIsLoading(false)
+    : setIsLoading(true);
   }, [characters]);
 
   const getHomeworldName = async (homeworldURL) => {
