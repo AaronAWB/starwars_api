@@ -7,5 +7,10 @@ body {
 }
 
 th {
-    color: rgb(213, 213, 30);
+    color: #ffe919
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
 }

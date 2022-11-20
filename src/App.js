@@ -59,9 +59,15 @@ const App = () => {
     return species.data.name
     }
   
-  // const handlePageChange = (e) => {
-  //   e.target
-  // }
+  const handlePageChange = (page) => {
+    if (page = 'previous') {
+      getCharacterData(previousPageURL)
+    } else if (page = 'next') {
+      getCharacterData(nextPageURL)
+    } else {
+      getCharacterData(`https://swapi.dev/api/people/${page}/`)
+    }
+  }
   
   return (
     <div className='container'>
