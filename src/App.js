@@ -10,8 +10,7 @@ const App = () => {
 
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [species, setSpecies] = useState('');
-
+  
   const getHomeworldName = async (homeworldURL) => {
     const homeworld = await Axios.get(homeworldURL)
     return homeworld.data.name
