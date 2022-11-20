@@ -61,11 +61,14 @@ const App = () => {
   
   const handlePageChange = (page) => {
     if (page = 'previous') {
+      setPageNumber(pageNumber - 1)
       getCharacterData(previousPageURL)
     } else if (page = 'next') {
+      setPageNumber(pageNumber + 1)
       getCharacterData(nextPageURL)
     } else {
-      getCharacterData(`https://swapi.dev/api/people/${page}/`)
+      setPageNumber(page)
+      getCharacterData(`https://swapi.dev/api/people/${pageNumber}/`)
     }
   }
   
