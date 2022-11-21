@@ -63,6 +63,7 @@ const App = () => {
     }
   
   const handlePageChange = (page) => {
+    setCharacters([])
     if (page === 'previous') {
         getCharacterData(previousPageURL)
     } else if (page === 'next') {
@@ -80,16 +81,22 @@ const App = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    console.log('Clicked')
     getCharacterData(`https://swapi.dev/api/people/?search=${searchParameter}`);
+  }
+
+  const clearSearch = (event) => {
+    event.preventDefault();
+    setSearchParameter('')
+    getCharacterData(baseURL)
   }
   
   return (
     <div className='container'>
-      <h1 className='text-center mt-4'>Star Wars API Search</h1>
+      <h1 className='text-center mt-4'>Star Wars Character Search</h1>
       <SearchBar
        handleSearchBarInput={ handleSearchBarInput } 
        handleSearch={ handleSearch }
+       clearSearch={ clearSearch }
        />
       <CharacterTable 
         characters={ characters }

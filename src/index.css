@@ -1,7 +1,16 @@
+@font-face {
+    font-family: 'StarWarsFont';
+	src: './assets/StarWarsFont.ttf'
+}
 body {
     background-image: url(./assets/Starwars-background.jpg);
     background-size: cover;
 }
+
+h1 {
+    font-family: 'StarWarsFont';
+}
+
 .search-box-container {
     display: flex;
 }
