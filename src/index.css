@@ -1,29 +1,40 @@
-@font-face {
-    font-family: 'StarWarsFont';
-	src: './assets/StarWarsFont.ttf'
-}
+
 body {
     background-image: url(./assets/Starwars-background.jpg);
     background-size: cover;
 }
 
 h1 {
-    font-family: 'StarWarsFont';
+    font-weight: bolder;
+    color: #ffe919;
+    font-size: 300px;
 }
 
 .search-bar-container {
     display: flex;
 }
 
-.search-btn {
-    background-color:#ffe919
+.btn {
+    background-color: #ffe919 !important;
+}
+
+.btn:hover{
+    background-color: #f4de1d !important;
+}
+
+.loading-container {
+    padding: 20px;
+}
+
+.loading-text {
+    padding-left: 20px;
 }
 
 th {
     color: #ffe919
 }
 
-.pagination {
-    display: flex;
-    justify-content: center;
+.page-number {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
 }

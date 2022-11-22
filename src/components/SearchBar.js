@@ -14,7 +14,7 @@ const SearchBar = ({handleSearchBarInput, handleSearch, clearSearch}) => {
             </div>
             <div className ='col-1'>
                 <button
-                    className='btn btn-warning'
+                    className='btn'
                     onClick={handleSearch}
                 >Search</button>
             </div>

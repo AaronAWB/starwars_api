@@ -11,9 +11,11 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
+  const [isFirstPage, setIsFirstPage] = useState(true);
+  const [isLastPage, setIsLastPage] = useState(false)
   const [nextPageURL, setNextPageURL] = useState('');
   const [previousPageURL, setPreviousPageURL] = useState('');
-  const [searchParameter, setSearchParameter] = useState('')
+  const [searchParameter, setSearchParameter] = useState('');
 
   const baseURL = 'https://swapi.dev/api/people';
   
@@ -64,13 +66,18 @@ const App = () => {
   
   const handlePageChange = (page) => {
     setCharacters([])
-    if (page === 'previous') {
-        getCharacterData(previousPageURL)
-    } else if (page === 'next') {
-        getCharacterData(nextPageURL)
-    } else {
-        getCharacterData(`https://swapi.dev/api/people/?page=${page}`)
-    }
+    
+    pageNumber === 1
+    ? setIsFirstPage = true
+    : setIsFirstPage = false
+
+    pageNumber === 9
+    ? setIsLastPage = true
+    : setIsLastPage = false
+
+    page === 'Next'
+    ? getCharacterData(nextPageURL)
+    : getCharacterData(previousPageURL)
   }
 
   const handleSearchBarInput = (event) => {
@@ -83,26 +90,20 @@ const App = () => {
     event.preventDefault();
     getCharacterData(`https://swapi.dev/api/people/?search=${searchParameter}`);
   }
-
-  const clearSearch = (event) => {
-    event.preventDefault();
-    setSearchParameter('')
-    getCharacterData(baseURL)
-  }
-  
+ 
   return (
     <div className='container'>
       <h1 className='text-center mt-4'>Star Wars Character Search</h1>
       <SearchBar
        handleSearchBarInput={ handleSearchBarInput } 
        handleSearch={ handleSearch }
-       clearSearch={ clearSearch }
        />
       <CharacterTable 
         characters={ characters }
         loading={ isLoading }
         />
-      <Pagination handlePageChange={ handlePageChange }/>
+      <Pagination 
+        handlePageChange={ handlePageChange }/>
     </div>
   );
 }

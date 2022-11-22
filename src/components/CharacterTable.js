@@ -3,7 +3,14 @@ import React from 'react';
 const CharacterTable = ({ characters, loading }) => {
 
     if(loading) {
-        return <h2>Loading...</h2>
+        return (
+            <div className="loading-container d-flex justify-content-center">
+                <div className="spinner-border mr-8" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+                <h3 className='loading-text'>Loading...</h3>
+            </div>
+        )
     }
  
     return (
