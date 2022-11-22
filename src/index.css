@@ -11,8 +11,12 @@ h1 {
     font-family: 'StarWarsFont';
 }
 
-.search-box-container {
+.search-bar-container {
     display: flex;
+}
+
+.search-btn {
+    background-color:#ffe919
 }
 
 th {

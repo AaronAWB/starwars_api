@@ -2,23 +2,21 @@ import React from 'react'
 
 const SearchBar = ({handleSearchBarInput, handleSearch, clearSearch}) => {
     return(
-        <div className='container search-box-container mb-4 mt-4 align-items-center justify-content-center'>
-            <div>
+        <div className='container search-bar-container mb-4 mt-4 justify-content-center row'>
+            <div className='col-4'>
                 <input
                     type='text'
+                    placeholder='Search by character name...'
+                    className='form-control input-lg'
                     onChange={handleSearchBarInput}
                 >
                 </input>
             </div>
-            <div>
+            <div className ='col-1'>
                 <button
+                    className='btn btn-warning'
                     onClick={handleSearch}
                 >Search</button>
-            </div>
-            <div>
-                <button
-                    onClick={clearSearch}
-                >Clear</button>
             </div>
         </div>
     )
