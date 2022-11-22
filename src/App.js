@@ -67,13 +67,17 @@ const App = () => {
   const handlePageChange = (page) => {
     setCharacters([])
     
+    page === 'Next'
+    ? setPageNumber(pageNumber + 1)
+    : setPageNumber(pageNumber - 1)
+
     pageNumber === 1
-    ? setIsFirstPage = true
-    : setIsFirstPage = false
+    ? setIsFirstPage(true)
+    : setIsFirstPage(false)
 
     pageNumber === 9
-    ? setIsLastPage = true
-    : setIsLastPage = false
+    ? setIsLastPage(true)
+    : setIsFirstPage(false)
 
     page === 'Next'
     ? getCharacterData(nextPageURL)
@@ -103,7 +107,10 @@ const App = () => {
         loading={ isLoading }
         />
       <Pagination 
-        handlePageChange={ handlePageChange }/>
+        handlePageChange={ handlePageChange }
+        firstPage={ isFirstPage }
+        lastPage={ isLastPage }
+        />
     </div>
   );
 }

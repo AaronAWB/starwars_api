@@ -6,8 +6,8 @@ body {
 
 h1 {
     font-weight: bolder;
-    color: #ffe919;
-    font-size: 300px;
+    color: black;
+    font-size: 60px !important;
 }
 
 .search-bar-container {
