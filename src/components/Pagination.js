@@ -1,13 +1,18 @@
 import React from 'react';
 
-const Pagination = ({handlePageChange, firstPage, lastPage}) => {
+const Pagination = ({handlePageChange, pageNumber, firstPage, lastPage}) => {
     return (
-        <div class="d-flex justify-content-center">
-            <div class="btn-group me-2" role="group" aria-label="Next page button">
-                <button onClick={() => handlePageChange('Previous')} disabled={firstPage ? true : false} type="button" class="btn">Previous Page</button>
+        <div>
+            <div className="d-flex justify-content-center">
+                <div className="btn-group me-2" role="group" aria-label="Next page button">
+                    <button onClick={() => handlePageChange('Previous')} disabled={firstPage ? true : false} type="button" class="btn">Back</button>
+                </div>
+                <div className="btn-group" role="group" aria-label="Previos page button">
+                    <button onClick={() => handlePageChange('Next')} disabled={lastPage ? true : false} type="button" class="btn">Next</button>
+                </div>
             </div>
-            <div class="btn-group" role="group" aria-label="Previos page button">
-                <button onClick={() => handlePageChange('Next')} disabled={lastPage ? true : false} type="button" class="btn">Next Page</button>
+            <div className='d-flex justify-content-center mt-2'>
+                <h6>{pageNumber} of 9</h6>
             </div>
         </div>
     )

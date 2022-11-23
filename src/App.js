@@ -110,6 +110,7 @@ const App = () => {
         />
       <Pagination 
         handlePageChange={ handlePageChange }
+        pageNumber={ pageNumber }
         firstPage={ isFirstPage }
         lastPage={ isLastPage }
         />
