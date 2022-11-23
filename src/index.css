@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Asap&family=Bebas+Neue&display=swap');
+
 body {
     background-image: url(./assets/Starwars-background.jpg);
     background-size: cover;
@@ -6,7 +8,17 @@ body {
 
 h1 {
     font-weight: bolder;
+    font-family: 'Asap', sans-serif;
+    font-family: 'Bebas Neue', cursive;
     color: black;
+    font-size: 60px !important;
+}
+
+.header-span {
+    font-weight: bolder;
+    font-family: 'Asap', sans-serif;
+    font-family: 'Bebas Neue', cursive;
+    color: #ffe919;
     font-size: 60px !important;
 }
 

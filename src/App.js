@@ -97,7 +97,7 @@ const App = () => {
  
   return (
     <div className='container'>
-      <h1 className='text-center mt-4'>Star Wars Character Search</h1>
+      <h1 className='text-center mt-4'><span className='header-span'>Star Wars</span> Character Search</h1>
       <SearchBar
        handleSearchBarInput={ handleSearchBarInput } 
        handleSearch={ handleSearch }
