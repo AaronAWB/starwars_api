@@ -66,24 +66,26 @@ const App = () => {
   
   const handlePageChange = (page) => {
     setCharacters([])
-    
-    page === 'Next'
-    ? setPageNumber(pageNumber + 1)
-    : setPageNumber(pageNumber - 1)
 
+    if (page === 'Next') {
+      setPageNumber(pageNumber + 1)
+      getCharacterData(nextPageURL)
+    } else {
+      setPageNumber(pageNumber - 1)
+      getCharacterData(previousPageURL)
+    }
+  }
+  
+  useEffect (() => {
     pageNumber === 1
     ? setIsFirstPage(true)
     : setIsFirstPage(false)
 
     pageNumber === 9
     ? setIsLastPage(true)
-    : setIsFirstPage(false)
-
-    page === 'Next'
-    ? getCharacterData(nextPageURL)
-    : getCharacterData(previousPageURL)
-  }
-
+    : setIsLastPage(false)
+  }, [pageNumber])
+    
   const handleSearchBarInput = (event) => {
     event.preventDefault();
     setSearchParameter(event.target.value);
