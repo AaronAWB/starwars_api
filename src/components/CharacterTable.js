@@ -2,6 +2,21 @@ import React from 'react';
 
 const CharacterTable = ({ characters, loading }) => {
 
+    const renderCharacterTable = () => {
+        return characters.map((character, i) => {
+            return(
+                <tr key={i}>
+                    <td>{character.name}</td>
+                    <td>{character.birth_year}</td>
+                    <td>{character.height} cm</td>
+                    <td>{character.mass} kg</td>
+                    <td>{character.homeworld}</td>
+                    <td>{character.species}</td>
+                </tr>
+                )
+        })
+    }
+
     if(loading) {
         return (
             <div className="loading-container d-flex justify-content-center">
@@ -10,9 +25,11 @@ const CharacterTable = ({ characters, loading }) => {
                 </div>
                 <h3 className='loading-text'>Loading...</h3>
             </div>
-        )
-    }
- 
+            )
+        } else {
+            renderCharacterTable();
+        }
+
     return (
         <div className='container'>
             <table className='table table-striped table-dark'>
@@ -27,18 +44,7 @@ const CharacterTable = ({ characters, loading }) => {
                     </tr>
                 </thead>
                 <tbody className='text-center'>
-                    {characters.map((character, i) => {
-                        return(
-                            <tr key={i}>
-                                <td>{character.name}</td>
-                                <td>{character.birth_year}</td>
-                                <td>{character.height} cm</td>
-                                <td>{character.mass} kg</td>
-                                <td>{character.homeworld}</td>
-                                <td>{character.species}</td>
-                            </tr>
-                            )
-                     })}
+                    {renderCharacterTable()}
                 </tbody>
             </table>
         </div>

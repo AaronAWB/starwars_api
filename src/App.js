@@ -25,9 +25,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    characters.length !== 0
-    ? setIsLoading(false)
-    : setIsLoading(true);
+    characters.length !== 0 ? setIsLoading(false) : setIsLoading(true);
   }, [characters]);
 
   useEffect (() => {
