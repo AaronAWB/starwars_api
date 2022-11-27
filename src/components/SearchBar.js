@@ -16,7 +16,15 @@ const SearchBar = ({handleSearchBarInput, handleSearch, clearSearch}) => {
                 <button
                     className='btn'
                     onClick={handleSearch}
-                >Search</button>
+                >
+                    Search
+                </button>
+                <button
+                    className='btn'
+                    onClick={clearSearch}
+                >
+                    Search
+                </button>
             </div>
         </div>
     )
