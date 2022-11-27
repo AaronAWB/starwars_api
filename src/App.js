@@ -10,7 +10,8 @@ const App = () => {
 
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [lastPageNumber, setLastPageNumber] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [isLastPage, setIsLastPage] = useState(false)
   const [nextPageURL, setNextPageURL] = useState('');
@@ -24,6 +25,7 @@ const App = () => {
       const response = await Axios.get(url)
       const data = response.data;
       const characterResults = data.results;
+      const totalCharacters = data.count;
       const nextPage = data.next;
       const previousPage = data.previous;
       
@@ -38,6 +40,7 @@ const App = () => {
       setCharacters(characterResults)
       setNextPageURL(nextPage)
       setPreviousPageURL(previousPage)
+      setLastPageNumber(Math.ceil(totalCharacters / 10))
     } 
     catch (error) {
       console.log(error)
@@ -68,23 +71,18 @@ const App = () => {
     setCharacters([])
 
     if (page === 'Next') {
-      setPageNumber(pageNumber + 1)
+      setCurrentPage(currentPage + 1)
       getCharacterData(nextPageURL)
     } else {
-      setPageNumber(pageNumber - 1)
+      setCurrentPage(currentPage - 1)
       getCharacterData(previousPageURL)
     }
   }
   
   useEffect (() => {
-    pageNumber === 1
-    ? setIsFirstPage(true)
-    : setIsFirstPage(false)
-
-    pageNumber === 9
-    ? setIsLastPage(true)
-    : setIsLastPage(false)
-  }, [pageNumber])
+    currentPage === 1 ? setIsFirstPage(true) : setIsFirstPage(false)
+    currentPage === lastPageNumber ? setIsLastPage(true) : setIsLastPage(false)
+  }, [currentPage])
     
   const handleSearchBarInput = (event) => {
     event.preventDefault();
@@ -99,11 +97,9 @@ const App = () => {
 
   const handleClear = (event) => {
     event.preventDefault();
-    setPageNumber(1);
+    setCurrentPage(1);
     setSearchParameter('');
     getCharacterData(baseURL);
-
-    
   }
  
   return (
@@ -121,8 +117,8 @@ const App = () => {
         />
       <Pagination 
         handlePageChange={ handlePageChange }
-        pageNumber={ pageNumber }
-        firstPage={ isFirstPage }
+        lastPageNumber={ lastPageNumber }
+        currentPage={ currentPage }
         lastPage={ isLastPage }
         />
     </div>
