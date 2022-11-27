@@ -96,13 +96,24 @@ const App = () => {
     event.preventDefault();
     getCharacterData(`https://swapi.dev/api/people/?search=${searchParameter}`);
   }
+
+  const handleClear = (event) => {
+    event.preventDefault();
+    setPageNumber(1);
+    setSearchParameter('');
+    getCharacterData(baseURL);
+
+    
+  }
  
   return (
     <div className='container'>
       <h1 className='text-center mt-4'><span className='header-span'>Star Wars</span> Character Search</h1>
       <SearchBar
-       handleSearchBarInput={ handleSearchBarInput } 
+       handleSearchBarInput={ handleSearchBarInput }
+       searchParameter={ searchParameter } 
        handleSearch={ handleSearch }
+       clearSearch={ handleClear }
        />
       <CharacterTable 
         characters={ characters }
