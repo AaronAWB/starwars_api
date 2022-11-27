@@ -22,10 +22,10 @@ const App = () => {
   const getCharacterData = async (url) => {
     try {
       const response = await Axios.get(url)
-      console.log(url)
-      const characterResults = response.data.results
-      const nextPage = response.data.next;
-      const previousPage = response.data.previous;
+      const data = response.data;
+      const characterResults = data.results;
+      const nextPage = data.next;
+      const previousPage = data.previous;
       
       for (let character of characterResults) {
         
@@ -111,9 +111,9 @@ const App = () => {
       <h1 className='text-center mt-4'><span className='header-span'>Star Wars</span> Character Search</h1>
       <SearchBar
        handleSearchBarInput={ handleSearchBarInput }
-       searchParameter={ searchParameter } 
        handleSearch={ handleSearch }
        clearSearch={ handleClear }
+       searchParameter={ searchParameter } 
        />
       <CharacterTable 
         characters={ characters }

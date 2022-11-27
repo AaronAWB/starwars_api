@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SearchBar = ({handleSearchBarInput, handleSearch, clearSearch}) => {
+const SearchBar = ({handleSearchBarInput, handleSearch, clearSearch, searchParameter}) => {
     return(
         <div className='container search-bar-container mb-4 mt-4 justify-content-center row'>
             <div className='col-6'>
@@ -9,6 +9,7 @@ const SearchBar = ({handleSearchBarInput, handleSearch, clearSearch}) => {
                     placeholder='Search by character name...'
                     className='form-control input-lg'
                     onChange={handleSearchBarInput}
+                    value={searchParameter}
                 >
                 </input>
             </div>
