@@ -19,6 +19,21 @@ const App = () => {
   const [searchParameter, setSearchParameter] = useState('');
 
   const baseURL = 'https://swapi.dev/api/people';
+
+  useEffect (() => {
+    getCharacterData(baseURL)
+  }, [])
+
+  useEffect(() => {
+    characters.length !== 0
+    ? setIsLoading(false)
+    : setIsLoading(true);
+  }, [characters]);
+
+  useEffect (() => {
+    currentPage === 1 ? setIsFirstPage(true) : setIsFirstPage(false)
+    currentPage === lastPageNumber ? setIsLastPage(true) : setIsLastPage(false)
+  }, [currentPage])
   
   const getCharacterData = async (url) => {
     try {
@@ -47,16 +62,6 @@ const App = () => {
     }
   }
   
-  useEffect (() => {
-    getCharacterData(baseURL)
-  }, [])
-
-  useEffect(() => {
-    characters.length !== 0
-    ? setIsLoading(false)
-    : setIsLoading(true);
-  }, [characters]);
-
   const getHomeworldName = async (homeworldURL) => {
     const homeworld = await Axios.get(homeworldURL)
     return homeworld.data.name
@@ -78,12 +83,7 @@ const App = () => {
       getCharacterData(previousPageURL)
     }
   }
-  
-  useEffect (() => {
-    currentPage === 1 ? setIsFirstPage(true) : setIsFirstPage(false)
-    currentPage === lastPageNumber ? setIsLastPage(true) : setIsLastPage(false)
-  }, [currentPage])
-    
+     
   const handleSearchBarInput = (event) => {
     event.preventDefault();
     setSearchParameter(event.target.value);
