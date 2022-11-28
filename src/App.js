@@ -1,6 +1,6 @@
 import React from 'react'
 import Axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
 import SearchBar from './components/SearchBar';
 import CharacterTable from './components/CharacterTable';
@@ -12,7 +12,6 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [lastPageNumber, setLastPageNumber] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isFirstPage, setIsFirstPage] = useState(true);
   const [isLastPage, setIsLastPage] = useState(false)
   const [nextPageURL, setNextPageURL] = useState('');
   const [previousPageURL, setPreviousPageURL] = useState('');
@@ -29,11 +28,10 @@ const App = () => {
   }, [characters]);
 
   useEffect (() => {
-    currentPage === 1 ? setIsFirstPage(true) : setIsFirstPage(false)
     currentPage === lastPageNumber ? setIsLastPage(true) : setIsLastPage(false)
-  }, [currentPage])
+  }, [lastPageNumber, currentPage])
   
-  const getCharacterData = async (url) => {
+  const getCharacterData = useCallback(async (url) => {
     try {
       const response = await Axios.get(url)
       const data = response.data;
@@ -58,7 +56,7 @@ const App = () => {
     catch (error) {
       console.log(error)
     }
-  }
+  }, [])
   
   const getHomeworldName = async (homeworldURL) => {
     const homeworld = await Axios.get(homeworldURL)
@@ -91,11 +89,13 @@ const App = () => {
   const handleSearch = (event) => {
     event.preventDefault();
     getCharacterData(`https://swapi.dev/api/people/?search=${searchParameter}`);
+    setCurrentPage(1);
   }
 
-  const handleClear = (event) => {
+  const handleClearSearch = (event) => {
     event.preventDefault();
     setCurrentPage(1);
+    setLastPageNumber(null);
     setSearchParameter('');
     getCharacterData(baseURL);
   }
@@ -106,7 +106,7 @@ const App = () => {
       <SearchBar
        handleSearchBarInput={ handleSearchBarInput }
        handleSearch={ handleSearch }
-       clearSearch={ handleClear }
+       clearSearch={ handleClearSearch }
        searchParameter={ searchParameter } 
        />
       <CharacterTable 
